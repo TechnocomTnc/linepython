@@ -32,7 +32,7 @@ def bot():
     # ตรวจสอบว่า ที่ส่งเข้ามาเป็น text รึป่าว (อาจเป็น รูป, location อะไรแบบนี้ได้ครับ)
     # แต่ก็สามารถประมวลผลข้อมูลประเภทอื่นได้นะครับ
     # เช่น ถ้าส่งมาเป็น location ทำการดึง lat long ออกมาทำบางอย่าง เป็นต้น
-    if msgType != 'sticker':
+    if msgType != 'text':
         reply(replyToken, ['Only text is allowed.'])
         return 'OK',200
     
