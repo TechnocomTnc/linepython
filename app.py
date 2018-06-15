@@ -22,13 +22,18 @@ def bot():
     msg_in_string = json.dumps(msg_in_json)
     
     # Token สำหรับตอบกลับ (จำเป็นต้องใช้ในการตอบกลับ)
-    replyToken = msg_in_json["events"][0]['replyToken']
-
+    replyToken = msg_in_json["events"][0]['replyToken']   
+    
     # ทดลอง Echo ข้อความกลับไปในรูปแบบที่ส่งไป-มา (แบบ json)
     replyStack.append("เทสๆ")
     replyStack.append("ปรับปรุงแปปครับ")
     reply(replyToken, replyStack[:5])
-
+ 
+    if msg_in_string == "ดี" :
+        replyStack.append("ดีครับ")
+        reply(replyToken, replyStack[:5])
+   
+   
     return 'OK',200
  
 def reply(replyToken, textList):
