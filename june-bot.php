@@ -7,6 +7,7 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
+
 $api_key="c-9iVt7OvlHt_HeJci-4E3dL-PpBhF77";
 $url = 'https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'';
 $json = file_get_contents('https://api.mlab.com/api/1/databases/junebot/collections/question?apiKey='.$api_key.'&q={"question":"'.$_msg.'"}');
@@ -50,6 +51,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
         if( sizeof($rec->answer) > 0){
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = $rec->answer;
+                $arrPostData['messages'][1]['type'] = "text";
+                $arrPostData['messages'][1]['text'] = $rec->answer;
         }
         else{
             $arrPostData = array();
