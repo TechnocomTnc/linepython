@@ -41,11 +41,11 @@ def bot():
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
-    #   response_dict = {'Hi':'Hii'}
-    #   if text in response_dict:
-    #       replyQueue.append(reponse_dict[text])
-    #   else:
-    #       replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
+    #  response_dict = {'สวัสดี':'สวัสดีครับ'}
+    #  if text in response_dict:
+    #      replyQueue.append(reponse_dict[text])
+    #  else:
+    #      replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
        
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ non-exact match
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
@@ -60,7 +60,7 @@ def bot():
     
     # ทดลอง Echo ข้อความกลับไปในรูปแบบที่ส่งไปมา (แบบ json)
     replyQueue.append(msg_in_string)
-    # reply(replyToken, replyQueue[:5])
+    reply(replyToken, replyQueue[:5])
     
     return 'OK', 200
  
