@@ -52,7 +52,7 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = $rec->answer;
                 $arrPostData['messages'][1]['type'] = "text";
-                $arrPostData['messages'][1]['text'] = 'ขอบคุณนะ (´▽｀)';
+                $arrPostData['messages'][1]['text'] = $rec->answer;
         }
         else{
             $arrPostData = array();
