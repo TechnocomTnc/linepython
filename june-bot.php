@@ -51,8 +51,8 @@ if (strpos($_msg, 'น้องเน่จำนะ') !== false) {
         if( sizeof($rec->answer) > 0){
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = $rec->answer;
-                $arrPostData['messages'][1]['type'] = "text";
-                $arrPostData['messages'][1]['text'] = $rec->answer;
+                //$arrPostData['messages'][1]['type'] = "text";
+                //$arrPostData['messages'][1]['text'] = $rec->answer;
         }
         else{
             $arrPostData = array();
