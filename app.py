@@ -41,8 +41,8 @@ def bot():
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
-    response_dict = {'สวัสดี','สวัสดีครับ'}
-    if text in response_dict:
+    response_dict = ['สวัสดี','สวัสดีครับ']
+    if text in response_dict :
          replyQueue.append(reponse_dict[text])
      else:
          replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
