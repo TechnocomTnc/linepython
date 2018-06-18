@@ -41,14 +41,14 @@ def bot():
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     
-    replyQueue.append(text)
-    replyQueue.append('ดีๆๆๆๆๆๆ')
+    #replyQueue.append(text)
+    #replyQueue.append('ดีๆๆๆๆๆๆ')
     
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
     response_dict = ('ดี','สวัสดีครับ')
     response = ('ไง','ดีครับ','ว่าไงครับ')
     if text in response_dict :
-        replyQueue.append('ดีๆ234')
+        #replyQueue.append('ดีๆ234')
         replyQueue.append(random.choice(response))
     else:
          replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
