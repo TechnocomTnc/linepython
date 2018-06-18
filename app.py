@@ -2,6 +2,15 @@ from flask import Flask, request
 import json
 import requests
 import random
+import MySQLdb
+import json
+dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
+query = "select * from question"
+ with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
+    cursor.execute(query)
+    data = cursor.fetchall()
+
+
 
 
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
@@ -42,6 +51,10 @@ def bot():
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     replyQueue.append(text)
+
+    
+    x = json.dumps(data,indent=4)
+    replyQueue.append(x)
 
 
 
