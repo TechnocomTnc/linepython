@@ -3,12 +3,6 @@ import json
 import requests
 import random
 
-import PyMySQL as m
-c = None
-#c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
-#cur = c.cursor()
-
-
 
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
 global LINE_API_KEY
@@ -101,8 +95,7 @@ def bot():
     reply(replyToken, replyQueue[:5])
     
     return 'OK', 200
-    if c:
-        c.close()
+
  
 def reply(replyToken, textList):
     # Method สำหรับตอบกลับข้อความประเภท text กลับครับ เขียนแบบนี้เลยก็ได้ครับ
