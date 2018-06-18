@@ -10,6 +10,7 @@ try:
     cur = c.cursor()
     cur.execute("SELECT VERSION()")
     data = cur.fetchone()
+    replyQueue.append("ฐานข้อมูลเวอร์ชั่น : ", data)
     print ("ฐานข้อมูลเวอร์ชั่น : ", data)
     
 except m.Error:
@@ -60,6 +61,8 @@ def bot():
         "SELECT a_topic FROM answer AS e "
         "JOIN question AS s USING (a_id) "
         "WHERE  q_topic = '%s'" % text)
+    replyQueue.append(text)
+
     cur.execute(query)
     results = cur.fetchall()
     for x in results :
