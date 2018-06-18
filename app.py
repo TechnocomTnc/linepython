@@ -63,10 +63,10 @@ def bot():
    
     # ตอบข้อความ "นี่คือรูปแบบข้อความที่รับส่ง" กลับไป
 
-    replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
+    #replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
     
     # ทดลอง Echo ข้อความกลับไปในรูปแบบที่ส่งไปมา (แบบ json)
-    replyQueue.append(text)
+    #replyQueue.append(text)
     reply(replyToken, replyQueue[:5])
     
     return 'OK', 200
