@@ -44,7 +44,8 @@ def bot():
     response_dict = ('สวัสดี','สวัสดีครับ')
     response = ('ไง','ดีครับ','ว่าไงครับ')
     if text in response_dict :
-         replyQueue.append(random.choice(response))
+        replyQueue.append('ดีๆๆๆๆๆๆ')
+         #replyQueue.append(random.choice(response))
      else:
          replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
        
