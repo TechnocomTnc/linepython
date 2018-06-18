@@ -3,7 +3,7 @@ import json
 import requests
 import random
 
-import pymysql as m
+import PyMySQL as m
 c = None
 c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
 cur = c.cursor()
