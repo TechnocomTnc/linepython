@@ -3,6 +3,20 @@ import json
 import requests
 import random
 
+import pymysql as m
+c = None
+try:
+    c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
+    cur = c.cursor()
+    cur.execute("SELECT VERSION()")
+    data = cur.fetchone()
+    print ("ฐานข้อมูลเวอร์ชั่น : ", data)
+    
+except m.Error:
+    print('ติดต่อฐานข้อมูลผิดพลาด')
+
+
+
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
 global LINE_API_KEY
 # ห้ามลบคำว่า Bearer ออกนะครับเมื่อนำ access token มาใส่
@@ -34,24 +48,35 @@ def bot():
     # แต่ก็สามารถประมวลผลข้อมูลประเภทอื่นได้นะครับ
     # เช่น ถ้าส่งมาเป็น location ทำการดึง lat long ออกมาทำบางอย่าง เป็นต้น
     if msgType != 'text':
-        reply(replyToken, ['Only text is allowed.'])
+        reply(replyToken, ['อะไรของเธอ'])
         return 'OK',200
     
     # ตรงนี้ต้องแน่ใจว่า msgType เป็นประเภท text ถึงเรียกได้ครับ 
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     
+
+    query = (
+        "SELECT a_topic FROM answer AS e "
+        "JOIN question AS s USING (a_id) "
+        "WHERE  q_topic = '%s'" % text)
+    cur.execute(query)
+    results = cur.fetchall()
+    for x in results :
+        replyQueue.append("%s"%x)
+    
+
     #replyQueue.append(text)
     #replyQueue.append('ดีๆๆๆๆๆๆ')
     
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
-    response_dict = ('ดี','สวัสดีครับ')
-    response = ('ไง','ดีครับ','ว่าไงครับ')
-    if text in response_dict :
-        #replyQueue.append('ดีๆ234')
-        replyQueue.append(random.choice(response))
-    else:
-         replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
+    # response_dict = ('ดี','สวัสดีครับ')
+    # response = ('ไง','ดีครับ','ว่าไงครับ')
+
+    # if text in response_dict :
+    #     replyQueue.append(random.choice(response))
+    #  else:
+    #      replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
        
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ non-exact match
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
