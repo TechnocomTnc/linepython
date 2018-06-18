@@ -62,7 +62,7 @@ def bot():
         cur = c.cursor()
         cur.execute("SELECT VERSION()")
         data = cur.fetchone()
-        replyQueue.append('ฐานข้อมูลเวอร์ชั่น : ')
+        replyQueue.append('ฐานข้อมูลเวอร์ชั่น')
         print ("ฐานข้อมูลเวอร์ชั่น : ", data)
         
     except m.Error:
@@ -70,6 +70,8 @@ def bot():
     
     
     replyQueue.append(text)
+
+    replyQueue.append(data)
 
 
 
