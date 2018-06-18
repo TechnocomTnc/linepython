@@ -5,16 +5,16 @@ import random
 
 import pymysql as m
 c = None
-try:
-    c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
-    cur = c.cursor()
-    cur.execute("SELECT VERSION()")
-    data = cur.fetchone()
-    replyQueue.append("ฐานข้อมูลเวอร์ชั่น : ", data)
-    print ("ฐานข้อมูลเวอร์ชั่น : ", data)
+# try:
+#     c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
+#     cur = c.cursor()
+#     cur.execute("SELECT VERSION()")
+#     data = cur.fetchone()
+#     replyQueue.append("ฐานข้อมูลเวอร์ชั่น : ", data)
+#     print ("ฐานข้อมูลเวอร์ชั่น : ", data)
     
-except m.Error:
-    print('ติดต่อฐานข้อมูลผิดพลาด')
+# except m.Error:
+#     print('ติดต่อฐานข้อมูลผิดพลาด')
 
 
 
@@ -57,16 +57,32 @@ def bot():
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     
 
-    query = (
-        "SELECT a_topic FROM answer AS e "
-        "JOIN question AS s USING (a_id) "
-        "WHERE  q_topic = '%s'" % text)
-    replyQueue.append(text)
+    try:
+        c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
+        cur = c.cursor()
+        cur.execute("SELECT VERSION()")
+        data = cur.fetchone()
+        replyQueue.append('ฐานข้อมูลเวอร์ชั่น : ')
+        print ("ฐานข้อมูลเวอร์ชั่น : ", data)
+        
+    except m.Error:
+        print('ติดต่อฐานข้อมูลผิดพลาด')
 
-    cur.execute(query)
-    results = cur.fetchall()
-    for x in results :
-        replyQueue.append(x)
+
+
+
+
+
+    # query = (
+    #     "SELECT a_topic FROM answer AS e "
+    #     "JOIN question AS s USING (a_id) "
+    #     "WHERE  q_topic = '%s'" % text)
+    # replyQueue.append(text)
+
+    # cur.execute(query)
+    # results = cur.fetchall()
+    # for x in results :
+    #     replyQueue.append(x)
     
 
     #replyQueue.append(text)
