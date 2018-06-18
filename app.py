@@ -67,7 +67,9 @@ def bot():
         
     except m.Error:
         print('ติดต่อฐานข้อมูลผิดพลาด')
-
+    
+    
+    replyQueue.append(text)
 
 
 
