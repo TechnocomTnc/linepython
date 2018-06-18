@@ -2,7 +2,6 @@ from flask import Flask, request
 import json
 import requests
 import random
-import MySQLdb
 
 
 
@@ -47,23 +46,6 @@ def bot():
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     replyQueue.append(text)
 
-    
-    
-    dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
-    query = "select * from question"
-    with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
-    cursor.execute(query)
-    data = cursor.fetchall()
-    x = json.dumps(data,indent=4)
-    replyQueue.append(x)
-
-
-
-    
-    
-    replyQueue.append(text)
-
-    
 
 
 
