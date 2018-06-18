@@ -5,15 +5,7 @@ import random
 
 import pymysql as m
 c = None
-try:
-    c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
-    cur = c.cursor()
-    cur.execute("SELECT VERSION()")
-    data = cur.fetchone()
-    replyQueue.append('ฐานข้อมูลเวอร์ชั่น')
-    
-except m.Error:
-    replyQueue.append('errrrrrrr')
+c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
 
 
 
