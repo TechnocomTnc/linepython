@@ -63,7 +63,7 @@ def bot():
     cur.execute(query)
     results = cur.fetchall()
     for x in results :
-        replyQueue.append("%s"%x)
+        replyQueue.append(x)
     
 
     #replyQueue.append(text)
@@ -95,6 +95,8 @@ def bot():
     reply(replyToken, replyQueue[:5])
     
     return 'OK', 200
+    if c:
+        c.close()
  
 def reply(replyToken, textList):
     # Method สำหรับตอบกลับข้อความประเภท text กลับครับ เขียนแบบนี้เลยก็ได้ครับ
