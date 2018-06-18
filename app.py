@@ -44,11 +44,11 @@ def bot():
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
     response_dict = ('ดี','สวัสดีครับ')
     response = ('ไง','ดีครับ','ว่าไงครับ')
-    #if text in response_dict :
+    if text in response_dict :
         #replyQueue.append('ดีๆๆๆๆๆๆ')
-    #    replyQueue.append(random.choice(response))
-    # else:
-    #     replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
+        replyQueue.append(random.choice(response))
+     else:
+         replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
        
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ non-exact match
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
