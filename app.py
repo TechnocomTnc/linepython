@@ -40,15 +40,18 @@ def bot():
     # ตรงนี้ต้องแน่ใจว่า msgType เป็นประเภท text ถึงเรียกได้ครับ 
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
+    replyQueue.append(text)
     replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
     response_dict = ('ดี','สวัสดีครับ')
     response = ('ไง','ดีครับ','ว่าไงครับ')
+    
     if text in response_dict :
+        replyQueue.append(text)
         #replyQueue.append('ดีๆๆๆๆๆๆ')
-        replyQueue.append(random.choice(response))
+        #replyQueue.append(random.choice(response))
      else:
-         replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
+        replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
        
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ non-exact match
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
@@ -60,10 +63,10 @@ def bot():
    
     # ตอบข้อความ "นี่คือรูปแบบข้อความที่รับส่ง" กลับไป
 
-    replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
+    #replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
     
     # ทดลอง Echo ข้อความกลับไปในรูปแบบที่ส่งไปมา (แบบ json)
-    //replyQueue.append(text)
+    #replyQueue.append(text)
     reply(replyToken, replyQueue[:5])
     
     return 'OK', 200
