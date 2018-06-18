@@ -55,7 +55,7 @@ def bot():
     # ตรงนี้ต้องแน่ใจว่า msgType เป็นประเภท text ถึงเรียกได้ครับ 
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
-    
+    replyQueue.append(text)
 
     try:
         c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
