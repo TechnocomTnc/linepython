@@ -66,12 +66,12 @@ def bot():
         print ("ฐานข้อมูลเวอร์ชั่น : ", data)
         
     except m.Error:
-        print('ติดต่อฐานข้อมูลผิดพลาด')
+        replyQueue.append('errrrrr')
     
     
     replyQueue.append(text)
 
-    replyQueue.append(data)
+    
 
 
 
