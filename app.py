@@ -5,8 +5,8 @@ import random
 
 import PyMySQL as m
 c = None
-c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
-cur = c.cursor()
+#c = m.connect(host='localhost', user='root', passwd='', db='db_junebot', charset='utf8')
+#cur = c.cursor()
 
 
 
