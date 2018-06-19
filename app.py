@@ -2,6 +2,17 @@ from flask import Flask, request
 import json
 import requests
 import random
+import MySQLdb
+
+dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
+query = "select * from question"
+with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
+cursor.execute(query)
+data = cursor.fetchall()
+x = json.dumps(data,indent=4)
+
+
+
 
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
 global LINE_API_KEY
@@ -36,6 +47,7 @@ def bot():
     # เช่น ถ้าส่งมาเป็น location ทำการดึง lat long ออกมาทำบางอย่าง เป็นต้น
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     replyQueue.append(text)
+    
     if msgType != 'text':
         reply(replyToken, ['อะไรของเธอ'])
         return 'OK',200
@@ -44,7 +56,7 @@ def bot():
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
 
 
-    # replyQueue.append(x)  
+    replyQueue.append(x)  
 
     replyQueue.append('OKK')
 
@@ -77,9 +89,9 @@ def bot():
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
     # เพื่อค้นหาประโยคที่ใกล้เคียงที่สุด อาจใช้เรื่องของ word embedding มาใช้งานได้ครับ
     # simple sentence embeddings --> https://openreview.net/pdf?id=SyK00v5xx
-    response_dict = {'ดี':'ดีครับ'}
-    closest = find_closest_sentence(response_dict, text)
-    replyQueue.append(reponse_dict[closest])
+    # response_dict = {'ดี':'ดีครับ'}
+    # closest = find_closest_sentence(response_dict, text)
+    # replyQueue.append(reponse_dict[closest])
    
     # ตอบข้อความ "นี่คือรูปแบบข้อความที่รับส่ง" กลับไป
     #replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
