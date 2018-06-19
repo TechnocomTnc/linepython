@@ -48,7 +48,7 @@ def bot():
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     replyQueue.append(text)
 
-    # replyQueue.append(x)  
+    replyQueue.append(x)  
 
     replyQueue.append('OKK')
 
