@@ -34,14 +34,15 @@ def bot():
     # ตรวจสอบว่า ที่ส่งเข้ามาเป็น text รึป่าว (อาจเป็น รูป, location อะไรแบบนี้ได้ครับ)
     # แต่ก็สามารถประมวลผลข้อมูลประเภทอื่นได้นะครับ
     # เช่น ถ้าส่งมาเป็น location ทำการดึง lat long ออกมาทำบางอย่าง เป็นต้น
+    text = msg_in_json["events"][0]['message']['text'].lower().strip()
+    replyQueue.append(text)
     if msgType != 'text':
         reply(replyToken, ['อะไรของเธอ'])
         return 'OK',200
     
     # ตรงนี้ต้องแน่ใจว่า msgType เป็นประเภท text ถึงเรียกได้ครับ 
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
-    text = msg_in_json["events"][0]['message']['text'].lower().strip()
-    replyQueue.append(text)
+
 
     # replyQueue.append(x)  
 
@@ -76,7 +77,7 @@ def bot():
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
     # เพื่อค้นหาประโยคที่ใกล้เคียงที่สุด อาจใช้เรื่องของ word embedding มาใช้งานได้ครับ
     # simple sentence embeddings --> https://openreview.net/pdf?id=SyK00v5xx
-    response_dict = ('ดี','สวัสดีครับ')
+    response_dict = {'ดี':'ดีครับ'}
     closest = find_closest_sentence(response_dict, text)
     replyQueue.append(reponse_dict[closest])
    
