@@ -4,6 +4,15 @@ import requests
 import random
 import MySQLdb
 
+dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
+query = "select * from question"
+with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
+    cursor.execute(query)
+    data = cursor.fetchall()
+    x = json.dumps(data,indent=4)
+
+
+
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
 global LINE_API_KEY
 # ห้ามลบคำว่า Bearer ออกนะครับเมื่อนำ access token มาใส่
@@ -46,7 +55,7 @@ def bot():
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
 
 
-
+    replyQueue.append(x)  
 
     replyQueue.append('OKK')
 
