@@ -35,8 +35,7 @@ def bot():
     # ตรวจสอบว่า ที่ส่งเข้ามาเป็น text รึป่าว (อาจเป็น รูป, location อะไรแบบนี้ได้ครับ)
     # แต่ก็สามารถประมวลผลข้อมูลประเภทอื่นได้นะครับ
     # เช่น ถ้าส่งมาเป็น location ทำการดึง lat long ออกมาทำบางอย่าง เป็นต้น
-    text = msg_in_json["events"][0]['message']['text'].lower().strip()
-    replyQueue.append(text)
+
     
     if msgType != 'text':
         reply(replyToken, ['อะไรของเธอ'])
@@ -46,7 +45,8 @@ def bot():
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
 
 
-
+    text = msg_in_json["events"][0]['message']['text'].lower().strip()
+    replyQueue.append(text)
 
     replyQueue.append('OKK')
 
