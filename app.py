@@ -2,10 +2,7 @@ from flask import Flask, request
 import json
 import requests
 import random
-
-
-
-
+import MySQLdb
 
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
 global LINE_API_KEY
@@ -18,6 +15,16 @@ app = Flask(__name__)
 def index():
     return 'This is chatbot server.'
 @app.route('/bot', methods=['POST'])
+
+
+def conn():
+    dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
+    query = "select * from question"
+    with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
+    cursor.execute(query)
+    data = cursor.fetchall()
+    x = json.dumps(data,indent=4)
+
 
 def bot():
     # ข้อความที่ต้องการส่งกลับ
@@ -46,8 +53,9 @@ def bot():
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
     replyQueue.append(text)
 
+    replyQueue.append(x)  
 
-
+    replyQueue.append('OKK')
 
 
     # query = (
@@ -62,8 +70,8 @@ def bot():
     #     replyQueue.append(x)
     
 
-    #replyQueue.append(text)
-    #replyQueue.append('ดีๆๆๆๆๆๆ')
+    # replyQueue.append(text)
+    # replyQueue.append('ดีๆๆๆๆๆๆ')
     
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
     # response_dict = ('ดี','สวัสดีครับ')
@@ -71,7 +79,7 @@ def bot():
 
     # if text in response_dict :
     #     replyQueue.append(random.choice(response))
-    #  else:
+    # else:
     #      replyQueue.append('ไม่รู้ว่าจะตอบอะไรดี TT')
        
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ non-exact match
@@ -83,7 +91,6 @@ def bot():
     # replyQueue.append(reponse_dict[closest])
    
     # ตอบข้อความ "นี่คือรูปแบบข้อความที่รับส่ง" กลับไป
-
     #replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
     
     # ทดลอง Echo ข้อความกลับไปในรูปแบบที่ส่งไปมา (แบบ json)
