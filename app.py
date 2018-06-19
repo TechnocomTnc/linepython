@@ -3,10 +3,6 @@ import json
 import requests
 import random
 import MySQLdb
-#import conn
-
-import subprocess
-subprocess.Popen("conn.py 1", shell=True)
 
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
 global LINE_API_KEY
@@ -46,27 +42,7 @@ def bot():
     # ตรงนี้ต้องแน่ใจว่า msgType เป็นประเภท text ถึงเรียกได้ครับ 
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
     text = msg_in_json["events"][0]['message']['text'].lower().strip()
-    replyQueue.append(text)
-
-    replyQueue.append(x)  
-
-    replyQueue.append('OKK')
-
-
-    # query = (
-    #     "SELECT a_topic FROM answer AS e "
-    #     "JOIN question AS s USING (a_id) "
-    #     "WHERE  q_topic = '%s'" % text)
     # replyQueue.append(text)
-
-    # cur.execute(query)
-    # results = cur.fetchall()
-    # for x in results :
-    #     replyQueue.append(x)
-    
-
-    # replyQueue.append(text)
-    # replyQueue.append('ดีๆๆๆๆๆๆ')
     
     # ตัวอย่างการทำให้ bot ถาม-ตอบได้ แบบ exact match
     # response_dict = ('ดี','สวัสดีครับ')
@@ -81,9 +57,9 @@ def bot():
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
     # เพื่อค้นหาประโยคที่ใกล้เคียงที่สุด อาจใช้เรื่องของ word embedding มาใช้งานได้ครับ
     # simple sentence embeddings --> https://openreview.net/pdf?id=SyK00v5xx
-    # response_dict = {'สวัสดี':'สวัสดีครับ'}
-    # closest = find_closest_sentence(response_dict, text)
-    # replyQueue.append(reponse_dict[closest])
+    response_dict = {'สวัสดี':'สวัสดีครับ'}
+    closest = find_closest_sentence(response_dict, text)
+    replyQueue.append(reponse_dict[closest])
    
     # ตอบข้อความ "นี่คือรูปแบบข้อความที่รับส่ง" กลับไป
     #replyQueue.append('นี่คือรูปแบบข้อความที่รับส่ง')
