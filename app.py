@@ -57,7 +57,7 @@ def bot():
     # โดยที่มี method ชื่อ find_closest_sentence ที่ใช้การเปรียบเทียบประโยค
     # เพื่อค้นหาประโยคที่ใกล้เคียงที่สุด อาจใช้เรื่องของ word embedding มาใช้งานได้ครับ
     # simple sentence embeddings --> https://openreview.net/pdf?id=SyK00v5xx
-    response_dict = {'สวัสดี':'สวัสดีครับ'}
+    response_dict = ('ดี','สวัสดีครับ')
     closest = find_closest_sentence(response_dict, text)
     replyQueue.append(reponse_dict[closest])
    
