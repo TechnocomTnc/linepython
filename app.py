@@ -17,15 +17,6 @@ def index():
 @app.route('/bot', methods=['POST'])
 
 
-def conn():
-    dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
-    query = "select * from question"
-    with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
-    cursor.execute(query)
-    data = cursor.fetchall()
-    x = json.dumps(data,indent=4)
-
-
 def bot():
     # ข้อความที่ต้องการส่งกลับ
     replyQueue = list()
@@ -122,3 +113,12 @@ def reply(replyToken, textList):
 
 if __name__ == '__main__':
     app.run()
+
+
+def conn():
+    dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
+    query = "select * from question"
+    with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
+    cursor.execute(query)
+    data = cursor.fetchall()
+    x = json.dumps(data,indent=4)
