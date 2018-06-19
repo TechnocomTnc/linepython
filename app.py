@@ -55,7 +55,7 @@ def bot():
     # lower เพื่อให้เป็นตัวพิมพ์เล็ก strip เพื่อนำช่องว่างหัวท้ายออก ครับ
 
 
-    replyQueue.append(x)  
+    # replyQueue.append(x)  
 
     replyQueue.append('OKK')
 
