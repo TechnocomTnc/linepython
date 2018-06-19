@@ -3,6 +3,10 @@ import json
 import requests
 import random
 import MySQLdb
+#import conn
+
+import subprocess
+subprocess.Popen("conn.py 1", shell=True)
 
 # ตรง YOURSECRETKEY ต้องนำมาใส่เองครับจะกล่าวถึงในขั้นตอนต่อๆ ไป
 global LINE_API_KEY
@@ -115,10 +119,3 @@ if __name__ == '__main__':
     app.run()
 
 
-def conn():
-    dbconn=MySQLdb.connect(database='db_junebot', user='root', password='', host='localhost',charset='utf8')
-    query = "select * from question"
-    with dbconn.cursor(MySQLdb.cursors.DictCursor) as cursor:
-    cursor.execute(query)
-    data = cursor.fetchall()
-    x = json.dumps(data,indent=4)
